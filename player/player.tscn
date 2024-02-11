@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm4fyl8ouslxl"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_tyj43"]
+[ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_vdo4p"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irotw"]
+height = 34.0
+
+[sub_resource type="Gradient" id="Gradient_qc6as"]
+offsets = PackedFloat32Array(0, 0.701299)
+colors = PackedColorArray(0.854242, 0.829105, 0.659212, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxvkj"]
+gradient = SubResource("Gradient_qc6as")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_tyj43")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 1.5)
+scale = Vector2(0.451613, 0.527027)
+texture = ExtResource("1_vdo4p")
+region_enabled = true
+region_rect = Rect2(577.3, 0, 62.7, 74.68)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_irotw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_cxvkj")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+energy = 0.05
+texture = SubResource("GradientTexture2D_cxvkj")

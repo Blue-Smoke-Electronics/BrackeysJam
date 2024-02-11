@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cggda3y3q40mn"]
+
+[ext_resource type="Script" path="res://key/key.gd" id="1_hcodw"]
+[ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_sw62j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iitew"]
+radius = 12.0
+height = 38.0
+
+[node name="Key" type="Area2D"]
+modulate = Color(1, 0.901961, 0, 1)
+position = Vector2(706, 817)
+script = ExtResource("1_hcodw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_sw62j")
+region_enabled = true
+region_rect = Rect2(569.26, 74.37, 73.8101, 48.4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iitew")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
