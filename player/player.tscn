@@ -1,24 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm4fyl8ouslxl"]
+[gd_scene load_steps=9 format=3 uid="uid://dm4fyl8ouslxl"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tyj43"]
 [ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_vdo4p"]
+[ext_resource type="Texture2D" uid="uid://bpllann8wo6w0" path="res://Assets/light_texuter.tres" id="3_d4qnv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irotw"]
 height = 34.0
 
-[sub_resource type="Gradient" id="Gradient_qc6as"]
-offsets = PackedFloat32Array(0, 0.701299)
-colors = PackedColorArray(0.854242, 0.829105, 0.659212, 1, 0, 0, 0, 1)
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_whswb"]
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+gravity = Vector3(0, -98, 0)
+turbulence_enabled = true
+turbulence_noise_strength = 0.5
+turbulence_noise_scale = 2.0
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxvkj"]
-gradient = SubResource("Gradient_qc6as")
-width = 1024
-height = 1024
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 1)
+[sub_resource type="Gradient" id="Gradient_k6c6h"]
+colors = PackedColorArray(0, 0, 0, 0, 0.546013, 0.725707, 0.493548, 0.670588)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_vltkv"]
+frequency = 0.0121
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yappy"]
+width = 5
+height = 5
+normalize = false
+color_ramp = SubResource("Gradient_k6c6h")
+noise = SubResource("FastNoiseLite_vltkv")
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_tyj43")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -34,9 +45,20 @@ shape = SubResource("CapsuleShape2D_irotw")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+blend_mode = 2
 shadow_enabled = true
-texture = SubResource("GradientTexture2D_cxvkj")
+shadow_filter = 2
+shadow_filter_smooth = 1.0
+texture = ExtResource("3_d4qnv")
+height = 10.0
 
 [node name="PointLight2D2" type="PointLight2D" parent="."]
 energy = 0.05
-texture = SubResource("GradientTexture2D_cxvkj")
+texture = ExtResource("3_d4qnv")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(0, -11)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_whswb")
+texture = SubResource("NoiseTexture2D_yappy")

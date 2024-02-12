@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="KeyRes" load_steps=2 format=3 uid="uid://e5jjvju2c13g"]
+
+[ext_resource type="Script" path="res://key/key_res.gd" id="1_dilg3"]
+
+[resource]
+script = ExtResource("1_dilg3")
+color = Color(0, 0.490196, 0.611765, 1)
+name = "Four"

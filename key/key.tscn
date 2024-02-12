@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cggda3y3q40mn"]
+[gd_scene load_steps=5 format=3 uid="uid://cggda3y3q40mn"]
 
 [ext_resource type="Script" path="res://key/key.gd" id="1_hcodw"]
 [ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_sw62j"]
@@ -7,9 +7,12 @@
 radius = 12.0
 height = 38.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_4ka4x"]
+font_size = 24
+
 [node name="Key" type="Area2D"]
 modulate = Color(1, 0.901961, 0, 1)
-position = Vector2(706, 817)
+position = Vector2(-4, 0)
 script = ExtResource("1_hcodw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -23,5 +26,15 @@ region_rect = Rect2(569.26, 74.37, 73.8101, 48.4)
 position = Vector2(4, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iitew")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 40.0
+offset_bottom = -8.0
+text = "Name"
+label_settings = SubResource("LabelSettings_4ka4x")
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

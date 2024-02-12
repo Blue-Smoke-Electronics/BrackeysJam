@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="KeyRes" load_steps=2 format=3 uid="uid://cwcq7np3di6k0"]
+
+[ext_resource type="Script" path="res://key/key_res.gd" id="1_nacwg"]
+
+[resource]
+script = ExtResource("1_nacwg")
+color = Color(0.788235, 0, 0.882353, 1)
+name = "Two"
