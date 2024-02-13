@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd0g5tigt3pyr"]
+
+[ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_6yk1b"]
+[ext_resource type="Script" path="res://gost_blaster/gost_blaster.gd" id="1_mjmgs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uf1ks"]
+radius = 45.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_coka1"]
+font_size = 48
+font_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="GostBlaster" type="Area2D"]
+script = ExtResource("1_mjmgs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uf1ks")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6yk1b")
+region_enabled = true
+region_rect = Rect2(389.51, 64.0738, 123.055, 126.694)
+
+[node name="NumberLable" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -52.0
+offset_top = -44.0
+offset_right = 45.0
+offset_bottom = 40.0
+text = "1"
+label_settings = SubResource("LabelSettings_coka1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoToLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -27.0
+offset_top = 26.0
+offset_right = 25.0
+offset_bottom = 49.0
+text = "go to x"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

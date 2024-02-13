@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dku7wi8synj5t"]
+[gd_scene load_steps=22 format=3 uid="uid://dku7wi8synj5t"]
 
 [ext_resource type="Script" path="res://tileset/BackgroundColor.gd" id="1_r002d"]
 [ext_resource type="TileSet" uid="uid://cg4ew4e6c8004" path="res://tileset/tileset.tres" id="1_t7bco"]
@@ -12,16 +12,19 @@
 [ext_resource type="Resource" uid="uid://duptphf2hdqhi" path="res://keys/key3.tres" id="8_21l4u"]
 [ext_resource type="Resource" uid="uid://e5jjvju2c13g" path="res://keys/key4.tres" id="9_tcvn0"]
 [ext_resource type="Resource" uid="uid://mc0ci25udx6r" path="res://keys/key5.tres" id="10_ako6w"]
+[ext_resource type="PackedScene" uid="uid://bm48xf8bu74wb" path="res://monster/monster.tscn" id="13_85jkq"]
 [ext_resource type="Script" path="res://GostBlasterController.gd" id="14_5iqc6"]
 [ext_resource type="PackedScene" uid="uid://dd0g5tigt3pyr" path="res://gost_blaster/gost_blaster.tscn" id="14_qi3go"]
 [ext_resource type="PackedScene" uid="uid://cd2cpmfm6imdc" path="res://menues/pause_menu.tscn" id="16_hf8s3"]
 [ext_resource type="PackedScene" uid="uid://ckrb3mags15f5" path="res://hud/hud.tscn" id="17_4gyer"]
 [ext_resource type="PackedScene" uid="uid://bcvbldkmge8p" path="res://carrot/carrot.tscn" id="18_g3ru2"]
 [ext_resource type="PackedScene" uid="uid://b1eniy33iig4j" path="res://monster/fox.tscn" id="19_4ougb"]
-[ext_resource type="PackedScene" uid="uid://dhe51nn4he3qy" path="res://monster/rabbit_new.tscn" id="19_wlfos"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fstmw"]
 size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hccd"]
+size = Vector2(21, 101)
 
 [node name="main" type="Node2D"]
 
@@ -33,7 +36,7 @@ scale = Vector2(100, 100)
 texture = SubResource("PlaceholderTexture2D_fstmw")
 script = ExtResource("1_r002d")
 
-[node name="TileMap" type="TileMap" parent="." groups=["map"]]
+[node name="TileMap" type="TileMap" parent="."]
 position = Vector2(322, 354)
 tile_set = ExtResource("1_t7bco")
 format = 2
@@ -108,8 +111,21 @@ position = Vector2(1157, 2923)
 key_res = ExtResource("7_2uung")
 
 [node name="KeyLastDEBUG" parent="keys" instance=ExtResource("4_gwrxx")]
+visible = false
 position = Vector2(1430, 870)
 key_res = ExtResource("7_2uung")
+
+[node name="Monster" parent="." node_paths=PackedStringArray("target", "start_trigger") instance=ExtResource("13_85jkq")]
+position = Vector2(1484, 869)
+target = NodePath("../Player")
+start_trigger = NodePath("triger")
+
+[node name="triger" type="Area2D" parent="Monster"]
+position = Vector2(23, 106)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Monster/triger"]
+position = Vector2(-158.5, -106.5)
+shape = SubResource("RectangleShape2D_2hccd")
 
 [node name="GostBlasterController" type="Node" parent="." node_paths=PackedStringArray("gost_blasters")]
 script = ExtResource("14_5iqc6")
@@ -482,27 +498,5 @@ rotation = -1.23063
 position = Vector2(2439, 3236)
 rotation = -1.23063
 
-[node name="Foxes" type="Node" parent="."]
-
-[node name="Fox" parent="Foxes" node_paths=PackedStringArray("map", "player") instance=ExtResource("19_4ougb")]
-position = Vector2(1261, 1255)
-map = NodePath("../../TileMap")
-player = NodePath("../../Player")
-
-[node name="Fox2" parent="Foxes" node_paths=PackedStringArray("map", "player") instance=ExtResource("19_4ougb")]
-position = Vector2(1901, 1325)
-map = NodePath("../../TileMap")
-player = NodePath("../../Player")
-
-[node name="Fox3" parent="Foxes" node_paths=PackedStringArray("map", "player") instance=ExtResource("19_4ougb")]
-position = Vector2(1161, 2433)
-map = NodePath("../../TileMap")
-player = NodePath("../../Player")
-
-[node name="Fox4" parent="Foxes" node_paths=PackedStringArray("map", "player") instance=ExtResource("19_4ougb")]
-position = Vector2(1343, 494)
-map = NodePath("../../TileMap")
-player = NodePath("../../Player")
-
-[node name="RabbitNew" parent="." instance=ExtResource("19_wlfos")]
-position = Vector2(1478, 867)
+[node name="Fox" parent="." instance=ExtResource("19_4ougb")]
+position = Vector2(1197, 1015)

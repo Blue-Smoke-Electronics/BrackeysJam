@@ -13,6 +13,12 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	if body is Player:
 		if GameManager.keys.has(key):
-			GameManager.keys.erase(key)
+			if sprite_2d != null:
+				sprite_2d.queue_free()
+				collision_shape_2d.queue_free()
+
+func _input(event):
+	if event.is_action("unlock_all"):
+		if sprite_2d != null:
 			sprite_2d.queue_free()
 			collision_shape_2d.queue_free()

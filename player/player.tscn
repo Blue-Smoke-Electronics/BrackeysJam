@@ -28,7 +28,7 @@ normalize = false
 color_ramp = SubResource("Gradient_k6c6h")
 noise = SubResource("FastNoiseLite_vltkv")
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["rabbit"]]
 motion_mode = 1
 script = ExtResource("1_tyj43")
 

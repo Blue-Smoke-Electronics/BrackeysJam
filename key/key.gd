@@ -8,5 +8,7 @@ func _ready():
 	label.text = key_res.name
 
 func _on_body_entered(body):
-	GameManager.keys.append(key_res)
-	queue_free()
+	if body is Player:
+		if not GameManager.keys.has(key_res):
+			GameManager.keys.append(key_res)
+		queue_free()

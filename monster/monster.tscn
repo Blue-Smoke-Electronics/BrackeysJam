@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bm48xf8bu74wb"]
+[gd_scene load_steps=6 format=3 uid="uid://bm48xf8bu74wb"]
 
 [ext_resource type="Script" path="res://monster/monster.gd" id="1_kcmmg"]
 [ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_t8wxv"]
@@ -7,24 +7,50 @@
 radius = 25.0
 height = 58.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qr3vb"]
+bg_color = Color(0.94902, 0, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lou3j"]
+bg_color = Color(0, 0.713726, 0, 1)
+
 [node name="Monster" type="Area2D"]
 script = ExtResource("1_kcmmg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SpriteMonster" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
 texture = ExtResource("1_t8wxv")
 region_enabled = true
 region_rect = Rect2(516.8, 0, 58.6544, 64.9091)
+
+[node name="SpriteLamb" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("1_t8wxv")
+region_enabled = true
+region_rect = Rect2(446.888, 8, 65.1119, 51.2545)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_83uyh")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.5
+wait_time = 0.2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -30.0
+offset_top = -42.0
+offset_right = 33.0
+offset_bottom = -35.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qr3vb")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lou3j")
+max_value = 3.0
+value = 3.0
+show_percentage = false
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1eniy33iig4j"]
+
+[ext_resource type="Script" path="res://monster/fox.gd" id="1_75u8i"]
+[ext_resource type="Texture2D" uid="uid://bwbh8ncnb8ox4" path="res://Assets/fox.png" id="2_sb1pk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83uyh"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6hryy"]
+radius = 21.0
+
+[node name="Fox" type="CharacterBody2D"]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_75u8i")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_sb1pk")
+region_rect = Rect2(516.8, 0, 58.6544, 64.9091)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_83uyh")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true
+
+[node name="PlayerKillArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKillArea"]
+shape = SubResource("CircleShape2D_6hryy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="body_entered" from="PlayerKillArea" to="." method="_on_player_kill_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
