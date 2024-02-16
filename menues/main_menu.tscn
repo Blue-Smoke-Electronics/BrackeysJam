@@ -31,7 +31,7 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Doors and Keys"
+text = "Into the Fox's Den"
 label_settings = SubResource("LabelSettings_fhbf5")
 horizontal_alignment = 1
 vertical_alignment = 1

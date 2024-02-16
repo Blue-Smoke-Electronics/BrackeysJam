@@ -9,6 +9,7 @@ const SPEED = 100
 var last_position : Vector2
 
 @onready var navigation_agent_2d = %NavigationAgent2D
+@onready var animated_sprite_2d = %AnimatedSprite2D
 
 var collided = false
 
@@ -22,7 +23,9 @@ func _physics_process(_delta):
 	velocity = dir.normalized()*SPEED
 	
 	collided = move_and_slide()
-	
+	if velocity.length() > 0:
+		animated_sprite_2d.play("walk")
+		animated_sprite_2d.rotation = velocity.angle()
 
 	
 		

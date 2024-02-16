@@ -108,6 +108,7 @@ position = Vector2(1157, 2923)
 key_res = ExtResource("7_2uung")
 
 [node name="KeyLastDEBUG" parent="keys" instance=ExtResource("4_gwrxx")]
+visible = false
 position = Vector2(1430, 870)
 key_res = ExtResource("7_2uung")
 

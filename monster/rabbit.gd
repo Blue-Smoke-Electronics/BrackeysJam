@@ -2,7 +2,7 @@ class_name Rabbit
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+var speed = 100.0
 const RABBIT = "res://monster/rabbit_new.tscn"
 
 
@@ -12,16 +12,25 @@ var target :Node2D  = null
 #@onready var mating_range = $MatingRange
 @onready var navigation_agent_2d = %NavigationAgent2D
 @onready var timer_mating = %TimerMating
+@onready var sprite_2d = $Sprite2D
 
 
 func _ready():
 	_set_random_target()
 	GameManager.rabbit_cnt += 1
+	speed = randf_range(speed/2,speed*2)
 	
 func _physics_process(_delta):
 	var dir = to_local(navigation_agent_2d.get_next_path_position())
-	velocity = dir.normalized()*SPEED
+	velocity = dir.normalized()*speed
+	if target:
+		velocity *= 2
 	move_and_slide()
+	
+	if velocity.x < 0:
+		sprite_2d.flip_h = true
+	elif velocity.x > 0 :
+		sprite_2d.flip_h = false
 
 func _on_timer_timeout():
 	if target:
@@ -41,7 +50,7 @@ func _on_timer_mating_timeout():
 
 func _on_mating_range_body_entered(body):
 	if body == target:
-		for i in 5:
+		for i in 1:
 			var child = load(RABBIT).instantiate()
 			get_parent().add_child(child)
 			child.global_position = global_position +Vector2(randf()*20+5,randf()*20+5)
@@ -49,3 +58,4 @@ func _on_mating_range_body_entered(body):
 		_set_random_target()
 		#queue_free()
 		timer_mating.start()
+		

@@ -25,7 +25,6 @@ shape = SubResource("CircleShape2D_b1a0n")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
-debug_enabled = true
 
 [node name="TimerFollow" type="Timer" parent="."]
 wait_time = 0.5
