@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dm4fyl8ouslxl"]
+[gd_scene load_steps=27 format=3 uid="uid://dm4fyl8ouslxl"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tyj43"]
 [ext_resource type="Texture2D" uid="uid://bokgep1k7sc2p" path="res://Assets/player.png" id="2_aybip"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://c0cl35ihspqgs" path="res://player/rabbit_jump_animation/move/0010.png" id="17_amnbs"]
 [ext_resource type="Texture2D" uid="uid://dttrl2kg355ga" path="res://player/rabbit_jump_animation/move/0011.png" id="18_4ijx7"]
 [ext_resource type="Texture2D" uid="uid://iu3lfn8uesk4" path="res://player/rabbit_jump_animation/move/0012.png" id="19_a4gms"]
+[ext_resource type="AudioStream" uid="uid://cbq0niixvw5j4" path="res://Assets/sound/Liten kanin.mp3" id="20_tdj71"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_irotw"]
 radius = 17.0
@@ -106,7 +107,8 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Player" type="CharacterBody2D" groups=["rabbit"]]
+[node name="Player" type="CharacterBody2D" groups=["player", "rabbit"]]
+collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_tyj43")
 
@@ -150,3 +152,7 @@ scale = Vector2(0.0955811, 0.0848389)
 sprite_frames = SubResource("SpriteFrames_4565f")
 animation = &"idle"
 frame_progress = 0.921558
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_tdj71")
+volume_db = -20.0

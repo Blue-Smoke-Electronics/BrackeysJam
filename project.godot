@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="BrackeysJam"
+config/name="Into the Fox's Den"
 run/main_scene="res://menues/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="res://Assets/cover.png"
+config/icon="res://Assets/player.png"
 
 [autoload]
 
@@ -69,3 +70,17 @@ pause={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":80,"key_label":0,"unicode":112,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_render/layer_1="wals"
+2d_render/layer_2="player"
+2d_render/layer_3="rabbits"
+2d_physics/layer_1="walls"
+2d_physics/layer_2="player"
+2d_physics/layer_3="rabbits"
+2d_physics/layer_4="fox"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"

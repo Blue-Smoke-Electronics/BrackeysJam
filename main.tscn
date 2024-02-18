@@ -34,6 +34,7 @@ texture = SubResource("PlaceholderTexture2D_fstmw")
 script = ExtResource("1_r002d")
 
 [node name="TileMap" type="TileMap" parent="." groups=["map"]]
+texture_filter = 1
 position = Vector2(322, 354)
 tile_set = ExtResource("1_t7bco")
 format = 2

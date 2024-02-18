@@ -32,9 +32,15 @@ theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "You Win :)"
+text = "Victory!
+Your children killed all the foxes
+"
 label_settings = SubResource("LabelSettings_7hdea")
 horizontal_alignment = 1
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ButtonRetry" type="Button" parent="VBoxContainer"]
 layout_mode = 2

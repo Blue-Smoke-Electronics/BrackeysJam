@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://i5uaxk0h5frs"]
+[gd_scene load_steps=7 format=3 uid="uid://i5uaxk0h5frs"]
 
 [ext_resource type="Script" path="res://door/door.gd" id="1_hhwx1"]
 [ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_r837y"]
+[ext_resource type="AudioStream" uid="uid://c0jfhcpm7nm3g" path="res://Assets/sound/Siste port.mp3" id="3_8m0oa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_af118"]
-size = Vector2(83, 23)
+size = Vector2(83, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_826kp"]
-size = Vector2(96, 51)
+size = Vector2(96, 96)
 
 [sub_resource type="LabelSettings" id="LabelSettings_y0rgg"]
 font_size = 32
@@ -21,13 +22,14 @@ region_enabled = true
 region_rect = Rect2(530, 126.441, 93, 67.6617)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 20.5)
+position = Vector2(-0.5, 2)
 shape = SubResource("RectangleShape2D_af118")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2, 17.5)
+position = Vector2(-2, -3)
 shape = SubResource("RectangleShape2D_826kp")
 
 [node name="Label" type="Label" parent="."]
@@ -39,5 +41,16 @@ offset_bottom = -26.0
 text = "Name"
 label_settings = SubResource("LabelSettings_y0rgg")
 horizontal_alignment = 1
+
+[node name="SpriteDoorClosed" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("1_r837y")
+region_enabled = true
+region_rect = Rect2(530.892, 250.988, 90.2171, 73.6388)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_8m0oa")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

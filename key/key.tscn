@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cggda3y3q40mn"]
+[gd_scene load_steps=6 format=3 uid="uid://cggda3y3q40mn"]
 
 [ext_resource type="Script" path="res://key/key.gd" id="1_hcodw"]
 [ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="1_sw62j"]
+[ext_resource type="AudioStream" uid="uid://bme7fv088seo1" path="res://Assets/sound/Nøkkel.mp3" id="3_7qs44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iitew"]
 radius = 12.0
@@ -13,6 +14,7 @@ font_size = 24
 [node name="Key" type="Area2D"]
 modulate = Color(1, 0.901961, 0, 1)
 position = Vector2(-4, 0)
+collision_mask = 2
 script = ExtResource("1_hcodw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -20,7 +22,7 @@ position = Vector2(1, -1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_sw62j")
 region_enabled = true
-region_rect = Rect2(569.26, 74.37, 73.8101, 48.4)
+region_rect = Rect2(249.535, 329, 79, 53)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0)
@@ -36,5 +38,8 @@ offset_bottom = -8.0
 text = "Name"
 label_settings = SubResource("LabelSettings_4ka4x")
 horizontal_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7qs44")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

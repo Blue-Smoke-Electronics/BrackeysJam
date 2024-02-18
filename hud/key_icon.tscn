@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr8celdw21hgn"]
+[gd_scene load_steps=5 format=3 uid="uid://dr8celdw21hgn"]
 
 [ext_resource type="Script" path="res://hud/key_icon.gd" id="1_pl76e"]
-[ext_resource type="Texture2D" uid="uid://cavn4kqu7faiy" path="res://Assets/key.png" id="2_8ktv3"]
+[ext_resource type="Texture2D" uid="uid://cgxp86wtf8iq4" path="res://Assets/tilemap.png" id="2_hojgf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hoxf"]
+atlas = ExtResource("2_hojgf")
+region = Rect2(256, 256, 64, 64)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mcqvh"]
 font_size = 32
@@ -15,8 +19,8 @@ script = ExtResource("1_pl76e")
 [node name="TextureRect" type="TextureRect" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("2_8ktv3")
-stretch_mode = 2
+texture = SubResource("AtlasTexture_2hoxf")
+stretch_mode = 5
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true

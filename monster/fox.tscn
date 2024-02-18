@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://b1eniy33iig4j"]
+[gd_scene load_steps=19 format=3 uid="uid://b1eniy33iig4j"]
 
 [ext_resource type="Script" path="res://monster/fox.gd" id="1_75u8i"]
-[ext_resource type="Texture2D" uid="uid://bwbh8ncnb8ox4" path="res://Assets/fox.png" id="2_sb1pk"]
 [ext_resource type="Texture2D" uid="uid://duaq3sa7e1mcm" path="res://monster/fox_animation/0001.png" id="3_mgy5w"]
 [ext_resource type="Texture2D" uid="uid://dmk13di22cfhj" path="res://monster/fox_animation/0002.png" id="4_6lcu6"]
 [ext_resource type="Texture2D" uid="uid://csc8dqpvxkp8a" path="res://monster/fox_animation/0003.png" id="5_uonsm"]
@@ -14,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bsh1vafder1bs" path="res://monster/fox_animation/0010.png" id="12_wtqlw"]
 [ext_resource type="Texture2D" uid="uid://c5hopcbn5xfng" path="res://monster/fox_animation/0011.png" id="13_a73v4"]
 [ext_resource type="Texture2D" uid="uid://0emdlslt56l" path="res://monster/fox_animation/0012.png" id="14_7val7"]
+[ext_resource type="Texture2D" uid="uid://dfmd1ktobgbk6" path="res://monster/fox_dead.png" id="15_6fgvn"]
+[ext_resource type="AudioStream" uid="uid://bf5gdcbrcj37t" path="res://Assets/sound/Copy of Stor kanin 3.mp3" id="15_kekvb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_83uyh"]
 radius = 2.0
@@ -66,26 +67,25 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Fox" type="CharacterBody2D"]
+[node name="Fox" type="CharacterBody2D" groups=["fox"]]
+collision_layer = 8
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_75u8i")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
-visible = false
-texture = ExtResource("2_sb1pk")
-region_rect = Rect2(516.8, 0, 58.6544, 64.9091)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(36, 0)
 shape = SubResource("CapsuleShape2D_83uyh")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
 
 [node name="PlayerKillArea" type="Area2D" parent="."]
+position = Vector2(-15, -17)
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerKillArea"]
+position = Vector2(15, 17)
 shape = SubResource("CircleShape2D_6hryy")
 
 [node name="Timer" type="Timer" parent="."]
@@ -94,11 +94,23 @@ autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-17, 4)
+position = Vector2(-18, 7)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_v2rpt")
 animation = &"walk"
 frame_progress = 0.944238
+
+[node name="SpriteDead" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-18, 6)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("15_6fgvn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_kekvb")
+autoplay = true
+max_distance = 500.0
+attenuation = 1.93187
 
 [connection signal="body_entered" from="PlayerKillArea" to="." method="_on_player_kill_area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ouka0ruuv7ye"
+path="res://.godot/imported/Stor kanin.mp3-91cb7f40828df9d92f1c2df86a53ff99.mp3str"
+
+[deps]
+
+source_file="res://Assets/sound/Stor kanin.mp3"
+dest_files=["res://.godot/imported/Stor kanin.mp3-91cb7f40828df9d92f1c2df86a53ff99.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -33,7 +33,7 @@ func _physics_process(_delta):
 		sprite_2d.flip_h = false
 
 func _on_timer_timeout():
-	if target:
+	if is_instance_valid(target):
 		navigation_agent_2d.target_position = target.global_position
 	
 	elif navigation_agent_2d.get_final_position().distance_to(global_position) < 10: 
@@ -46,11 +46,16 @@ func _set_random_target():
 	navigation_agent_2d.target_position = pos
 	
 func _on_timer_mating_timeout():
-	target = get_tree().get_nodes_in_group("rabbit").pick_random()
+	var rabits = get_tree().get_nodes_in_group("rabbit")
+	if rabits.size() < 50:
+		target = get_tree().get_nodes_in_group("player")[0]
+	else :
+		target = get_tree().get_nodes_in_group("fox").front()
+		timer_mating.start()
 
 func _on_mating_range_body_entered(body):
 	if body == target:
-		for i in 1:
+		for i in 3:
 			var child = load(RABBIT).instantiate()
 			get_parent().add_child(child)
 			child.global_position = global_position +Vector2(randf()*20+5,randf()*20+5)
